@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Assignment 3</title>
+</head>
+<body>
+<h1>Assignment 3</h1>
+
+<form action="https://cse.taylor.edu/~cos143/echoFormPost.php" method="Post">
+
+<label for="com">Comments</label>
+<textarea name="com" rows="5" id="com" ></textarea>
+
+<br><br>
+
+<label for="pass">Password</label>
+<input type="password" name="pass" id="pass" >
+
+<br><br>
+
+<label for="colorPicker">Favorite Color</label>
+<input type="color" name="myColor" id="colorPicker" >
+
+<br><br>
+
+<label for="ageRange">Age</label>
+<input type="range" max="100" min="10" name="ageRange" id="ageRange">
+
+<br><br>
+
+<label for="musician">Favorite Musician</label>
+<select name="musician" id="musician">
+	<optgroup label="Composers">
+		<option value="Beethoven">Beethoven</option>
+		<option value="Wolfgang">Wolfgang</option>
+		<option value="Bach">Bach</option>
+
+	</optgroup>
+	<optgroup label="Artists">
+		<option value="Sidewalk Prophets">Sidewalk Prophets</option>
+		<option value="Loren Allred">Loren Allred</option>
+		<option value="Anthem Light">Anthem Light</option>
+
+	</optgroup>
+	
+</select>
+
+<br><br>
+
+<fieldset>
+	<legend>Favorite Meal</legend>
+	<input type="radio" name="meal" id="Breakfast" value="Breakfast">
+		<label for="Breakfast">Breakfast</label>
+	<input type="radio" name="meal" id="Lunch" value="Lunch">
+		<label for="Lunch">Lunch</label>
+	<input type="radio" name="meal" id="Dinner" value="Dinner">
+		<label for="Dinner">Dinner</label>
+
+
+	
+</fieldset>
+
+<br><br>
+
+<input type="submit" value="Send to Server">
+
+</form>
+</body>
+
+</html>

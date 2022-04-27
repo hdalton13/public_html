@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Assgnment 7</title>
+<style>
+#statusMessage{float:right}
+</style>
+</head>
+<body>
+
+<h1>Login Demo</h1>
+
+<span id="statusMessage">The STATUS</span>
+
+<input type="text" id="username" placeholder="username">
+<input type="password" id="password" placeholder="password">
+<input type="button" value="Login" id="loginButton">
+<input type="button" value="LogOut" id="logoutButton" hidden>
+<input type="button" value="Create Account" id="createButton" >
+
+<script>
+loginButton.addEventListener("click", login);
+logoutButton.addEventListener("click", logout);
+createButton.addEventListener("click", createAccount);
+
+function login(e){
+	var ajax= new XMLHttpRequest();
+	var paramaters="Name="+username.value+"&Password="+password.value;
+	ajax.responseType="json";
+	ajax.addEventListener("load", function(){
+		console.log(this.response);
+		statusMessage.innerHTML = this.response[0].message;
+		if(this.response[0].status){
+			loginButton.setAttribute("hidden",null);
+			logoutButton.removeAttribute("hidden");
+		}
+	});
+	ajax.open("POST","//cse.taylor.edu/~cos143/sessions.php");
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+	ajax.send(paramaters);
+}
+
+function logout(e){
+	var ajax= new XMLHttpRequest();
+	var paramaters="Name="+username.value;
+	ajax.responseType="json";
+	ajax.addEventListener("load", function(){
+		console.log(this.response);
+		statusMessage.innerHTML = this.response[0].message;
+		logoutButton.setAttribute("hidden",null);
+		loginButton.removeAttribute("hidden");
+	});
+	ajax.open("DELETE","//cse.taylor.edu/~cos143/sessions.php");
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+	ajax.send(paramaters);
+}
+
+function createAccount(e){
+	var ajax = new XMLHttpRequest();
+	ajax.responseType = "json";
+	ajax.addEventListener("load", function() {
+		console.dir(ajax.response)
+		//document.getElementById("myDiv").innerHTML=ajax.response[0].message;
+	});
+	ajax.open("POST","//cse.taylor.edu/~cos143/users.php");
+	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	ajax.send("Name=dalton"+"&Password=testpass")
+}
+
+</script>
+
+</body>
+</html>

